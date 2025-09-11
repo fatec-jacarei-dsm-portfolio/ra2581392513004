@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfólio - Programador</title>
+    <title>Portfólio - Carlos Eduardo</title>
     <style>
         /* ===== Reset ===== */
         * {
@@ -89,8 +89,9 @@
             color: #ccc;
         }
 
-        /* ===== Sobre ===== */
+        /* ===== Seções ===== */
         .sobre,
+        .habilidades,
         .projetos,
         .contato {
             max-width: 1000px;
@@ -99,6 +100,7 @@
         }
 
         .sobre h2,
+        .habilidades h2,
         .projetos h2,
         .contato h2 {
             font-size: 2.5rem;
@@ -107,10 +109,84 @@
             color: #00ffcc;
         }
 
-        .sobre p {
-            text-align: center;
-            font-size: 1.1rem;
+        /* ===== Sobre Mim ===== */
+        .sobre {
+            background: linear-gradient(135deg, #111111, #1a1a1a);
+            border-radius: 15px;
+        }
+
+        .sobre-container {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .sobre-container img {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 3px solid #00ffcc;
+        }
+
+        .sobre-container p {
+            max-width: 600px;
+            text-align: justify;
             color: #ddd;
+            font-size: 1.1rem;
+        }
+
+        /* ===== Habilidades ===== */
+        .habilidades {
+            background: linear-gradient(135deg, #111111, #1a1a1a);
+            border-radius: 15px;
+            padding: 50px 20px;
+            margin-top: 40px;
+        }
+
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 40px;
+        }
+
+        .skill {
+            background: rgba(255, 255, 255, 0.05); /* fundo discreto */
+            color: transparent;
+            padding: 10px 15px;
+            border-radius: 10px;
+            font-weight: bold;
+            cursor: default;
+            opacity: 0;
+            transform: scale(0.8);
+            position: relative;
+        }
+
+        .skill::before {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, #00ffcc, #0099ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .skill.show {
+            opacity: 1;
+            transform: scale(1);
+            transition: transform 0.5s ease, opacity 0.5s ease;
         }
 
         /* ===== Projetos ===== */
@@ -141,6 +217,17 @@
         .card p {
             color: #ccc;
             font-size: 0.95rem;
+            margin-bottom: 10px;
+        }
+
+        .card a {
+            color: #00ffcc;
+            font-weight: bold;
+            transition: opacity 0.3s;
+        }
+
+        .card a:hover {
+            opacity: 0.8;
         }
 
         /* ===== Contato ===== */
@@ -185,6 +272,16 @@
             font-size: 0.9rem;
         }
 
+        footer a {
+            color: #00ffcc;
+            text-decoration: none;
+            margin: 0 5px;
+        }
+
+        footer a:hover {
+            opacity: 0.8;
+        }
+
         /* ===== Animations ===== */
         @keyframes fadeIn {
             from {
@@ -202,10 +299,11 @@
 
 <body>
     <header>
-        <h1>Meu Portfólio</h1>
+        <h1>Carlos Eduardo Gonçalves do Espírito Santo</h1>
         <nav>
             <ul>
                 <li><a href="#sobre">Sobre</a></li>
+                <li><a href="#habilidades">Habilidades</a></li>
                 <li><a href="#projetos">Projetos</a></li>
                 <li><a href="#contato">Contato</a></li>
             </ul>
@@ -219,10 +317,25 @@
 
     <section id="sobre" class="sobre">
         <h2>Sobre Mim</h2>
-        <p>Sou um programador apaixonado por tecnologia e inovação. Tenho 18 anos e estou em constante evolução,
-            buscando sempre aprender novas linguagens, frameworks e práticas de desenvolvimento para criar soluções
-            eficientes e criativas. Apesar da minha juventude, já possuo experiência em desenvolvimento de projetos
-            pessoais e acadêmicos, sempre com foco em qualidade e profissionalismo.</p>
+        <div class="sobre-container">
+            <img src="./imgs/Minhafoto.jpeg" alt="Foto de Carlos Eduardo">
+            <p>Sou um programador apaixonado por tecnologia e inovação. Tenho 18 anos e estou em constante evolução, buscando sempre aprender novas linguagens, frameworks e práticas de desenvolvimento para criar soluções eficientes e criativas. Apesar da minha juventude, já possuo experiência em desenvolvimento de projetos pessoais e acadêmicos, sempre com foco em qualidade e profissionalismo.</p>
+        </div>
+    </section>
+
+    <section id="habilidades" class="habilidades">
+        <h2>Habilidades</h2>
+        <div class="skills-container">
+            <span class="skill" data-text="HTML">HTML</span>
+            <span class="skill" data-text="CSS">CSS</span>
+            <span class="skill" data-text="JavaScript">JavaScript</span>
+            <span class="skill" data-text="TypeScript">TypeScript</span>
+            <span class="skill" data-text="Python">Python</span>
+            <span class="skill" data-text="React">React</span>
+            <span class="skill" data-text="Bootstrap">Bootstrap</span>
+            <span class="skill" data-text="Git/GitHub">Git/GitHub</span>
+            <span class="skill" data-text="SQL (MySQL & PostgreSQL)">SQL (MySQL & PostgreSQL)</span>
+        </div>
     </section>
 
     <section id="projetos" class="projetos">
@@ -231,8 +344,7 @@
             <div class="card">
                 <h3>Gerenciamento Acadêmico</h3>
                 <p>Este projeto leva em consideração as dificuldades para a faculdade se comunicar com os alunos</p>
-                <a href="https://github.com/ErrorSquad-ABP/Gerenciamento_Pedagogico-Front" target="_blank"
-                    style="color:#00ffcc; font-weight:bold;">ver</a>
+                <a href="https://github.com/ErrorSquad-ABP/Gerenciamento_Pedagogico-Front" target="_blank">ver</a>
             </div>
             <div class="card">
                 <h3>Projeto 2</h3>
@@ -263,6 +375,22 @@
             <a href="mailto:seuemail@gmail.com">E-mail</a>
         </p>
     </footer>
+
+    <script>
+        const skills = document.querySelectorAll('.skill');
+
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                }
+            });
+        }, { threshold: 0.3 });
+
+        skills.forEach(skill => {
+            observer.observe(skill);
+        });
+    </script>
 </body>
 
 </html>
