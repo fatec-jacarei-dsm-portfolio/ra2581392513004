@@ -55,23 +55,18 @@
             gap: 20px;
         }
 
-        nav ul li a {
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-
         nav ul li a:hover {
             color: #00ffcc;
         }
 
-        /* ===== Hero Section ===== */
+        /* ===== Hero ===== */
         .hero {
             height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            flex-direction: column;
             text-align: center;
+            flex-direction: column;
             padding: 0 20px;
         }
 
@@ -85,50 +80,42 @@
 
         .hero p {
             font-size: 1.2rem;
-            margin-top: 15px;
             color: #ccc;
+            margin-top: 15px;
         }
 
         /* ===== Seções ===== */
-        .sobre,
-        .habilidades,
-        .projetos,
-        .contato {
+        section {
             max-width: 1000px;
             margin: auto;
             padding: 100px 20px;
         }
 
-        .sobre h2,
-        .habilidades h2,
-        .projetos h2,
-        .contato h2 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
+        section h2 {
             text-align: center;
+            font-size: 2.5rem;
             color: #00ffcc;
+            margin-bottom: 20px;
         }
 
-        /* ===== Sobre Mim ===== */
+        /* ===== Sobre mim ===== */
         .sobre {
-            background: linear-gradient(135deg, #111111, #1a1a1a);
+            background: linear-gradient(135deg, #111, #1a1a1a);
             border-radius: 15px;
         }
 
         .sobre-container {
             display: flex;
             flex-wrap: wrap;
-            align-items: center;
             justify-content: center;
             gap: 30px;
-            margin-top: 40px;
         }
 
         .sobre-container img {
             width: 200px;
             height: 200px;
-            object-fit: cover;
             border-radius: 50%;
+            object-fit: cover;
             border: 3px solid #00ffcc;
         }
 
@@ -139,57 +126,7 @@
             font-size: 1.1rem;
         }
 
-        /* ===== Habilidades ===== */
-        .habilidades {
-            background: linear-gradient(135deg, #111111, #1a1a1a);
-            border-radius: 15px;
-            padding: 50px 20px;
-            margin-top: 40px;
-        }
-
-        .skills-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 40px;
-        }
-
-        .skill {
-            background: rgba(255, 255, 255, 0.05); /* fundo discreto */
-            color: transparent;
-            padding: 10px 15px;
-            border-radius: 10px;
-            font-weight: bold;
-            cursor: default;
-            opacity: 0;
-            transform: scale(0.8);
-            position: relative;
-        }
-
-        .skill::before {
-            content: attr(data-text);
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(90deg, #00ffcc, #0099ff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-        }
-
-        .skill.show {
-            opacity: 1;
-            transform: scale(1);
-            transition: transform 0.5s ease, opacity 0.5s ease;
-        }
-
-        /* ===== Projetos ===== */
+        /* ===== Cards ===== */
         .cards {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -201,16 +138,12 @@
             background: #1a1a1a;
             padding: 20px;
             border-radius: 15px;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0px 5px 15px rgba(0, 255, 204, 0.3);
+            transition: 0.3s;
+            cursor: default;
+            overflow: hidden;
         }
 
         .card h3 {
-            margin-bottom: 10px;
             color: #00ffcc;
         }
 
@@ -220,69 +153,55 @@
             margin-bottom: 10px;
         }
 
-        .card a {
+        .vermais {
+            margin-top: 10px;
             color: #00ffcc;
+            cursor: pointer;
             font-weight: bold;
-            transition: opacity 0.3s;
+            display: inline-block;
         }
 
-        .card a:hover {
-            opacity: 0.8;
+        .extra {
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            transition: 0.4s ease;
+            color: #ccc;
+            font-size: 0.9rem;
+            margin-top: 10px;
+        }
+
+        .extra.open {
+            max-height: 300px;
+            opacity: 1;
+        }
+
+        /* ===== Outras informações ===== */
+        .info-list {
+            list-style: none;
+            padding-left: 0;
+            margin-top: 20px;
+            color: #ccc;
+            font-size: 1.05rem;
+        }
+
+        .info-list li b {
+            color: #00ffcc;
         }
 
         /* ===== Contato ===== */
-        .contato form {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            max-width: 500px;
-            margin: auto;
-        }
-
-        .contato input,
-        .contato textarea {
-            padding: 12px;
-            border: none;
-            border-radius: 10px;
-            outline: none;
-            font-size: 1rem;
-        }
-
-        .contato button {
-            padding: 12px;
-            border: none;
-            border-radius: 10px;
-            background: linear-gradient(90deg, #00ffcc, #0099ff);
-            color: #000;
-            font-weight: bold;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .contato button:hover {
-            opacity: 0.8;
-        }
-
-        /* ===== Footer ===== */
         footer {
             text-align: center;
             padding: 20px;
             background: #111;
             color: #888;
-            font-size: 0.9rem;
         }
 
         footer a {
             color: #00ffcc;
-            text-decoration: none;
             margin: 0 5px;
         }
 
-        footer a:hover {
-            opacity: 0.8;
-        }
-
-        /* ===== Animations ===== */
         @keyframes fadeIn {
             from {
                 opacity: 0;
@@ -298,13 +217,15 @@
 </head>
 
 <body>
+
     <header>
         <h1>Carlos Eduardo Gonçalves do Espírito Santo</h1>
         <nav>
             <ul>
                 <li><a href="#sobre">Sobre</a></li>
-                <li><a href="#habilidades">Habilidades</a></li>
-                <li><a href="#projetos">Projetos</a></li>
+                <li><a href="#acad">Acadêmicos</a></li>
+                <li><a href="#pessoais">Pessoais</a></li>
+                <li><a href="#info">Outras Informações</a></li>
                 <li><a href="#contato">Contato</a></li>
             </ul>
         </nav>
@@ -315,82 +236,117 @@
         <p>Criando soluções criativas e modernas com tecnologia.</p>
     </section>
 
+    <!-- SOBRE -->
     <section id="sobre" class="sobre">
         <h2>Sobre Mim</h2>
         <div class="sobre-container">
             <img src="./minhafoto.jpeg" alt="Foto de Carlos Eduardo">
-            <p>Sou um desenvolvedor de software de 18 anos em busca de oportunidades para aplicar meus conhecimentos, criar soluções inovadoras e adquirir mais experiência na área. Já participei de projetos pessoais e acadêmicos, sempre com o objetivo de entregar resultados eficientes e de qualidade.</p>
+            <p>
+                Sou um desenvolvedor de software de 18 anos em busca de oportunidades para aplicar meus conhecimentos,
+                criar soluções inovadoras e adquirir mais experiência. Já participei de projetos acadêmicos e pessoais,
+                sempre com foco em entregar qualidade e eficiência.
+            </p>
         </div>
     </section>
 
-    <section id="habilidades" class="habilidades">
-        <h2>Habilidades</h2>
-        <div class="skills-container">
-            <span class="skill" data-text="HTML">HTML</span>
-            <span class="skill" data-text="CSS">CSS</span>
-            <span class="skill" data-text="JavaScript">JavaScript</span>
-            <span class="skill" data-text="TypeScript">TypeScript</span>
-            <span class="skill" data-text="Python">Python</span>
-            <span class="skill" data-text="React">React</span>
-            <span class="skill" data-text="Bootstrap">Bootstrap</span>
-            <span class="skill" data-text="Git/GitHub">Git/GitHub</span>
-            <span class="skill" data-text="SQL (MySQL & PostgreSQL)">SQL (MySQL & PostgreSQL)</span>
-        </div>
-    </section>
-
-    <section id="projetos" class="projetos">
-        <h2>Projetos</h2>
+    <!-- PROJETOS ACADÊMICOS -->
+    <section id="acad">
+        <h2>Projetos Acadêmicos</h2>
         <div class="cards">
+
             <div class="card">
                 <h3>Gerenciamento Acadêmico</h3>
-                <p>Este projeto leva em consideração as dificuldades para a faculdade se comunicar com os alunos</p>
-                <a href="https://github.com/ErrorSquad-ABP/Gerenciamento_Pedagogico-Front" target="_blank">ver</a>
+                <p>Projeto desenvolvido para melhorar a comunicação da instituição com os alunos.</p>
+                <p><b>Tecnologias:</b> HTML • CSS • JavaScript • Node.js • PostgreSQL</p>
+                <a href="https://github.com/ErrorSquad-ABP/Gerenciamento_Pedagogico-Front" target="_blank">Ver
+                    repositório</a>
+
+                <span class="vermais" onclick="toggleExtra(this)">Ver mais</span>
+                <div class="extra">
+                    <p><b>Minhas contribuições individuais:</b><br>
+                        Neste projeto minha principal função foi em relação ao back end, desde a criação de classes e
+                        seus métodos, como elas interagiam com nosso banco de dados, além de algumas participações
+                        menores no frontend como a responsividade da tabela
+                    </p>
+                </div>
             </div>
+
             <div class="card">
-                <h3>Projeto 2</h3>
-                <p>Descrição breve do projeto que você desenvolveu.</p>
+                <h3>Gerenciamento de dados limninológicos INPE</h3>
+                <p>Projeto em parceria com o INPE para que seus pesquisadores tenham acesso aos dados antigos que não estavam presentes na interface atual</p>
+                <p><b>Tecnologias:</b> React • TypeScript • Node.js • PostgreSQL</p>
+                <a href="https://github.com/ErrorSquad-ABP/ABP2" target="_blank">Ver
+                    repositório</a>
+
+                <span class="vermais" onclick="toggleExtra(this)">Ver mais</span>
+                <div class="extra">
+                    <p><b>Minhas contribuições individuais:</b><br>
+                        Neste projeto tive grandes participações como a criação de algumas páginas, lógicas de consultas
+                        pela interface e filtros, aplicação do mapa e seus poligonos
+                    </p>
+                </div>
             </div>
-            <div class="card">
-                <h3>Projeto 3</h3>
-                <p>Descrição breve do projeto que você desenvolveu.</p>
-            </div>
+
         </div>
     </section>
 
-    <section id="contato" class="contato">
+    <!-- PROJETOS PESSOAIS -->
+    <section id="pessoais">
+        <h2>Projetos Pessoais</h2>
+        <div class="cards">
+
+            <div class="card">
+                <h3>CSV graph generator</h3>
+                <p>Projeto que cria uma interface que pega arquivos csv's e te permite tranformar em gráficos com os dados escolhidos</p>
+                <p><b>Tecnologias:</b> Python</p>
+
+                <a href="https://github.com/Carlos-Santo/csv-graph-generator" target="_blank">Ver
+                    repositório</a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- OUTRAS INFORMAÇÕES -->
+    <section id="info">
+        <h2>Outras Informações</h2>
+
+        <ul class="info-list">
+            <li><b>Formação acadêmica:</b> Fui aluno da ETEC Ilza Nascimento Pintus, onde cursei o Ensino Médio
+                integrado ao Técnico. Atualmente, estou cursando ensino superior na FATEC
+                Jacareí.</li>
+
+            <li><b>Hobbies:</b> Gosto de fazer atividades fisícas, mas tenho como um dos meus principais hobbys progamar
+                alguns jogos de pequeno porte</li>
+            <li><b>Interesses profissionais:</b> Tenho interesse em atuar nas áreas de desenvolvimento de software,
+                criação de interfaces modernas, soluções web, análise de dados e projetos que envolvam inovação
+                tecnológica e melhoria contínua.</li>
+        </ul>
+    </section>
+
+    <!-- CONTATO -->
+    <section id="contato">
         <h2>Contato</h2>
-        <form>
-            <input type="text" placeholder="Seu Nome" required>
-            <input type="email" placeholder="Seu Email" required>
-            <textarea placeholder="Sua Mensagem" rows="5" required></textarea>
-            <button type="submit">Enviar</button>
-        </form>
+        <p style="text-align:center;margin-bottom:15px;">Acompanhe meus perfis:</p>
+
+        <div style="text-align:center;">
+            <a href="https://github.com/Carlos-Santo" target="_blank">GitHub</a> |
+            <a href="https://www.linkedin.com/in/carlos-eduardo-do-espírito-santo-04037534b?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank">LinkedIn</a>
+        </div>
     </section>
 
     <footer>
         <p>&copy; 2025 - Carlos Eduardo Gonçalves do Espírito Santo</p>
-        <p>
-            <a href="https://github.com/seuusuario" target="_blank">GitHub</a> |
-            <a href="https://www.linkedin.com/in/seuusuario" target="_blank">LinkedIn</a> |
-            <a href="mailto:seuemail@gmail.com">E-mail</a>
-        </p>
     </footer>
 
     <script>
-        const skills = document.querySelectorAll('.skill');
-
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('show');
-                }
-            });
-        }, { threshold: 0.3 });
-
-        skills.forEach(skill => {
-            observer.observe(skill);
-        });
+        function toggleExtra(el) {
+            const extra = el.nextElementSibling;
+            extra.classList.toggle("open");
+            el.textContent = extra.classList.contains("open") ? "Ver menos" : "Ver mais";
+        }
     </script>
+
 </body>
 
 </html>
