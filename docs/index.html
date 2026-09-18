@@ -11,15 +11,21 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: "Poppins", sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
-            background: #0f0f0f;
+            font-family: "Poppins", "Segoe UI", sans-serif;
+            background: radial-gradient(circle at 15% 10%, rgba(0, 255, 204, .07), transparent 28%),
+                radial-gradient(circle at 85% 35%, rgba(0, 153, 255, .06), transparent 30%), #0b0d10;
             color: #fff;
             line-height: 1.6;
-            scroll-behavior: smooth;
+            overflow-x: hidden;
         }
+
 
         a {
             color: inherit;
@@ -32,17 +38,19 @@
             top: 0;
             left: 0;
             width: 100%;
-            padding: 20px 50px;
+            padding: 16px 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(15, 15, 15, 0.9);
-            backdrop-filter: blur(8px);
+            background: rgba(11, 13, 16, 0.78);
+            border-bottom: 1px solid rgba(255, 255, 255, .07);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
             z-index: 100;
         }
 
         header h1 {
-            font-size: 1.5rem;
+            font-size: 1.25rem;
             font-weight: 700;
             background: linear-gradient(90deg, #00ffcc, #0099ff);
             -webkit-background-clip: text;
@@ -55,13 +63,23 @@
             gap: 20px;
         }
 
+        nav ul li a {
+            display: block;
+            padding: 8px 12px;
+            color: #c7cbd1;
+            border-radius: 8px;
+            transition: .25s ease;
+            font-size: .92rem;
+        }
+
         nav ul li a:hover {
             color: #00ffcc;
+            background: rgba(0, 255, 204, .07);
         }
 
         /* ===== Hero ===== */
         .hero {
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -71,7 +89,9 @@
         }
 
         .hero h2 {
-            font-size: 3rem;
+            font-size: clamp(2.3rem, 5vw, 4rem);
+            line-height: 1.15;
+            letter-spacing: -1px;
             background: linear-gradient(90deg, #00ffcc, #0099ff);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -86,22 +106,35 @@
 
         /* ===== Seções ===== */
         section {
-            max-width: 1000px;
+            max-width: 1100px;
             margin: auto;
-            padding: 100px 20px;
+            padding: 110px 24px;
+            scroll-margin-top: 70px;
         }
 
         section h2 {
             text-align: center;
-            font-size: 2.5rem;
+            font-size: clamp(2rem, 4vw, 2.6rem);
             color: #00ffcc;
-            margin-bottom: 20px;
+            margin-bottom: 12px;
+        }
+
+        section h2::after {
+            content: "";
+            display: block;
+            width: 42px;
+            height: 3px;
+            margin: 10px auto 0;
+            border-radius: 99px;
+            background: linear-gradient(90deg, #00ffcc, #0099ff);
         }
 
         /* ===== Sobre mim ===== */
         .sobre {
-            background: linear-gradient(135deg, #111, #1a1a1a);
-            border-radius: 15px;
+            background: linear-gradient(135deg, rgba(20, 24, 29, .96), rgba(15, 18, 22, .96));
+            border: 1px solid rgba(255, 255, 255, .07);
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, .22);
         }
 
         .sobre-container {
@@ -116,7 +149,9 @@
             height: 200px;
             border-radius: 50%;
             object-fit: cover;
-            border: 3px solid #00ffcc;
+            border: 2px solid #00ffcc;
+            padding: 4px;
+            box-shadow: 0 0 0 6px rgba(0, 255, 204, .06);
         }
 
         .sobre-container p {
@@ -135,22 +170,63 @@
         }
 
         .card {
-            background: #1a1a1a;
-            padding: 20px;
-            border-radius: 15px;
-            transition: 0.3s;
+            position: relative;
+            background: linear-gradient(145deg, rgba(27, 31, 37, .96), rgba(18, 21, 25, .96));
+            border: 1px solid rgba(255, 255, 255, .07);
+            padding: 24px;
+            border-radius: 16px;
+            transition: .25s ease;
             cursor: default;
             overflow: hidden;
         }
 
+        .card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, #00ffcc, #0099ff);
+            opacity: .65;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(0, 255, 204, .22);
+            box-shadow: 0 16px 35px rgba(0, 0, 0, .24);
+        }
+
         .card h3 {
             color: #00ffcc;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
         }
 
         .card p {
             color: #ccc;
             font-size: 0.95rem;
             margin-bottom: 10px;
+        }
+
+        .card a {
+            display: inline-block;
+            margin-top: 8px;
+            padding: 9px 16px;
+            color: #0b0d10;
+            background: linear-gradient(90deg, #00ffcc, #00d9ff);
+            font-weight: 700;
+            font-size: 0.9rem;
+            border-radius: 8px;
+            transition: 0.25s ease;
+            box-shadow: 0 4px 14px rgba(0, 255, 204, 0.15);
+        }
+
+        .card a:hover {
+            color: #0b0d10;
+            transform: translateY(-2px);
+            box-shadow: 0 7px 20px rgba(0, 255, 204, 0.28);
+            filter: brightness(1.08);
         }
 
         .vermais {
@@ -190,16 +266,85 @@
         }
 
         /* ===== Contato ===== */
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 18px;
+        }
+
+        .contact-links a {
+            display: inline-block;
+            padding: 9px 18px;
+            border: 1px solid rgba(0, 255, 204, .25);
+            border-radius: 999px;
+            background: rgba(0, 255, 204, .04);
+            transition: .25s ease;
+        }
+
+        .contact-links a:hover {
+            background: rgba(0, 255, 204, .1);
+            transform: translateY(-2px);
+        }
+
         footer {
             text-align: center;
-            padding: 20px;
-            background: #111;
-            color: #888;
+            padding: 28px 20px;
+            background: #090b0e;
+            border-top: 1px solid rgba(255, 255, 255, .06);
+            color: #777;
+            font-size: .9rem;
         }
 
         footer a {
             color: #00ffcc;
             margin: 0 5px;
+        }
+
+
+        @media (max-width: 850px) {
+            header {
+                padding: 14px 20px;
+            }
+
+            header h1 {
+                font-size: 1.05rem;
+            }
+
+            nav ul {
+                gap: 2px;
+            }
+
+            nav ul li a {
+                padding: 7px 8px;
+                font-size: .82rem;
+            }
+        }
+
+        @media (max-width: 650px) {
+            header {
+                position: absolute;
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero {
+                padding-top: 100px;
+            }
+
+            .sobre-container p {
+                text-align: left;
+                font-size: 1rem;
+            }
+
+            section {
+                padding: 80px 18px;
+            }
         }
 
         @keyframes fadeIn {
@@ -232,7 +377,7 @@
     </header>
 
     <section class="hero">
-        <h2>Olá, sou Desenvolvedor de Software 🚀</h2>
+        <h2>Olá, sou Desenvolvedor de Software</h2>
         <p>Criando soluções criativas e modernas com tecnologia.</p>
     </section>
 
@@ -258,8 +403,7 @@
                 <h3>Gerenciamento Acadêmico</h3>
                 <p>Projeto desenvolvido para melhorar a comunicação da instituição com os alunos.</p>
                 <p><b>Tecnologias:</b> HTML • CSS • JavaScript • Node.js • PostgreSQL</p>
-                <a href="https://github.com/ErrorSquad-ABP/Gerenciamento_Pedagogico-Front" target="_blank">Ver
-                    repositório</a>
+                <a href="https://github.com/ErrorSquad-ABP/Gerenciamento_Pedagogico-Front" target="_blank">↗ Ver repositório</a>
 
                 <span class="vermais" onclick="toggleExtra(this)">Ver mais</span>
                 <div class="extra">
@@ -276,14 +420,30 @@
                 <p>Projeto em parceria com o INPE para que seus pesquisadores tenham acesso aos dados antigos que não
                     estavam presentes na interface atual</p>
                 <p><b>Tecnologias:</b> React • TypeScript • Node.js • PostgreSQL</p>
-                <a href="https://github.com/ErrorSquad-ABP/ABP2" target="_blank">Ver
-                    repositório</a>
+                <a href="https://github.com/ErrorSquad-ABP/ABP2" target="_blank">↗ Ver repositório</a>
 
                 <span class="vermais" onclick="toggleExtra(this)">Ver mais</span>
                 <div class="extra">
                     <p><b>Minhas contribuições individuais:</b><br>
                         Neste projeto tive grandes participações como a criação de algumas páginas, lógicas de consultas
                         pela interface e filtros, aplicação do mapa e seus poligonos
+                    </p>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Quantum CRM</h3>
+                <p>Sistema de gestão de leads desenvolvido para a 1000 Vale, com o objetivo de centralizar e facilitar o
+                    gerenciamento de clientes e oportunidades comerciais, tornando o acompanhamento dos leads mais
+                    organizado e eficiente..</p>
+                <p><b>Tecnologias:</b> React • TypeScript • Node.js • PostgreSQL</p>
+                <a href="https://abp3-sistema-gestao-leads-front.vercel.app/login" target="blank">↗ Ver repositório</a>
+
+                <span class="vermais" onclick="toggleExtra(this)">Ver mais</span>
+                <div class="extra">
+                    <p><b>Minhas contribuições individuais:</b><br>
+                        Substitua este conteúdo pela descrição das suas principais contribuições,
+                        funcionalidades desenvolvidas e responsabilidades no projeto.
                     </p>
                 </div>
             </div>
@@ -355,15 +515,14 @@
         <h2>Contato</h2>
         <p style="text-align:center;margin-bottom:15px;">Acompanhe meus perfis:</p>
 
-        <div style="text-align:center;">
-            <a href="https://github.com/Carlos-Santo" target="_blank">GitHub</a> |
-            <a href="https://www.linkedin.com/in/carlos-eduardo-do-espírito-santo-04037534b?utm_source=share_via&utm_content=profile&utm_medium=member_android"
-                target="_blank">LinkedIn</a>
+        <div class="contact-links">
+            <a href="https://github.com/Carlos-Santo" target="_blank">GitHub</a>
+            <a href="https://www.linkedin.com/in/carlos-santo-devFno" target="_blank">LinkedIn</a>
         </div>
     </section>
 
     <footer>
-        <p>&copy; 2025 - Carlos Eduardo Gonçalves do Espírito Santo</p>
+        <p>&copy; 2026 - Carlos Eduardo Gonçalves do Espírito Santo</p>
     </footer>
 
     <script>
