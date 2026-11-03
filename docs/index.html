@@ -166,6 +166,7 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 20px;
+            align-items: start;
             margin-top: 40px;
         }
 
@@ -249,36 +250,19 @@
             display: inline-block;
         }
 
-        /* Painel que abre por cima do card, sem alterar a altura da linha do grid */
         .extra {
-            position: absolute;
-            inset: 0;
-            z-index: 2;
-            padding: 24px;
-            overflow-y: auto;
-            background: linear-gradient(145deg, rgba(27, 31, 37, .99), rgba(18, 21, 25, .99));
-            border-top: 2px solid #00ffcc;
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            transition: 0.4s ease;
             color: #ccc;
             font-size: 0.9rem;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(8px);
-            transition: opacity .3s ease, transform .3s ease, visibility .3s;
+            margin-top: 10px;
         }
 
         .extra.open {
+            max-height: 600px;
             opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-
-        .extra::-webkit-scrollbar {
-            width: 6px;
-        }
-
-        .extra::-webkit-scrollbar-thumb {
-            background: rgba(0, 255, 204, .35);
-            border-radius: 99px;
         }
 
         /* ===== Outras informações ===== */
@@ -442,7 +426,6 @@
                         seus métodos, como elas interagiam com nosso banco de dados, além de algumas participações
                         menores no frontend como a responsividade da tabela
                     </p>
-                    <span class="vermais" onclick="toggleExtra(this)">Ver menos</span>
                 </div>
             </div>
 
@@ -460,7 +443,6 @@
                         Neste projeto tive grandes participações como a criação de algumas páginas, lógicas de consultas
                         pela interface e filtros, aplicação do mapa e seus polígonos
                     </p>
-                    <span class="vermais" onclick="toggleExtra(this)">Ver menos</span>
                 </div>
             </div>
 
@@ -485,7 +467,6 @@
                         os indicadores exibidos na interface, para que a equipe comercial acompanhe o desempenho e
                         as oportunidades de forma visual.
                     </p>
-                    <span class="vermais" onclick="toggleExtra(this)">Ver menos</span>
                 </div>
             </div>
 
@@ -568,8 +549,28 @@
 
     <script>
         function toggleExtra(el) {
-            el.closest(".card").querySelector(".extra").classList.toggle("open");
+            const extra = el.nextElementSibling;
+            extra.classList.toggle("open");
+            el.textContent = extra.classList.contains("open") ? "Ver menos" : "Ver mais";
         }
+
+        // Deixa os cards fechados de cada grupo com a mesma altura.
+        // Como o grid usa align-items: start, só o card expandido cresce.
+        function igualarCards() {
+            document.querySelectorAll(".cards").forEach(grupo => {
+                const cards = [...grupo.children];
+                cards.forEach(card => card.style.minHeight = "");
+                const alturaFechado = card => {
+                    const extra = card.querySelector(".extra");
+                    return card.offsetHeight - (extra ? extra.offsetHeight : 0);
+                };
+                const maior = Math.max(...cards.map(alturaFechado));
+                cards.forEach(card => card.style.minHeight = maior + "px");
+            });
+        }
+
+        window.addEventListener("load", igualarCards);
+        window.addEventListener("resize", igualarCards);
     </script>
 
 </body>
