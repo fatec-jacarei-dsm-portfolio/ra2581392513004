@@ -4,10 +4,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portfólio de Carlos Eduardo Gonçalves do Espírito Santo, desenvolvedor de software e aluno de DSM na FATEC Jacareí.">
     <title>Portfólio - Carlos Eduardo</title>
     <style>
-        /* ===== Reset ===== */
-        * {
+        /* ===== Tokens de cor (claro / escuro automático) ===== */
+        :root {
+            --bg: #fafaf9;
+            --surface: #ffffff;
+            --text: #1c1917;
+            --muted: #57534e;
+            --subtle: #78716c;
+            --border: #e7e5e4;
+            --accent: #0f766e;
+            --accent-soft: #f0fdfa;
+            --radius: 12px;
+            --max: 960px;
+            color-scheme: light;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg: #0e0f11;
+                --surface: #16181b;
+                --text: #ececec;
+                --muted: #a8a29e;
+                --subtle: #8a8580;
+                --border: #26292d;
+                --accent: #2dd4bf;
+                --accent-soft: rgba(45, 212, 191, .08);
+                color-scheme: dark;
+            }
+        }
+
+        /* ===== Base ===== */
+        *,
+        *::before,
+        *::after {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -18,357 +50,415 @@
         }
 
         body {
-            font-family: "Poppins", "Segoe UI", sans-serif;
-            background: radial-gradient(circle at 15% 10%, rgba(0, 255, 204, .07), transparent 28%),
-                radial-gradient(circle at 85% 35%, rgba(0, 153, 255, .06), transparent 30%), #0b0d10;
-            color: #fff;
-            line-height: 1.6;
-            overflow-x: hidden;
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.65;
+            -webkit-font-smoothing: antialiased;
         }
-
 
         a {
             color: inherit;
-            text-decoration: none;
         }
 
-        /* ===== Header ===== */
+        a:focus-visible,
+        summary:focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 3px;
+            border-radius: 4px;
+        }
+
+        .container {
+            max-width: var(--max);
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ===== Cabeçalho ===== */
         header {
-            position: fixed;
+            position: sticky;
             top: 0;
-            left: 0;
-            width: 100%;
-            padding: 16px 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(11, 13, 16, 0.78);
-            border-bottom: 1px solid rgba(255, 255, 255, .07);
-            backdrop-filter: blur(14px);
-            -webkit-backdrop-filter: blur(14px);
-            z-index: 100;
+            z-index: 10;
+            background: color-mix(in srgb, var(--bg) 85%, transparent);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
         }
 
-        header h1 {
-            font-size: 1.25rem;
-            font-weight: 700;
-            background: linear-gradient(90deg, #00ffcc, #0099ff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        .nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            height: 60px;
+        }
+
+        .brand {
+            font-weight: 650;
+            text-decoration: none;
+            letter-spacing: -.01em;
         }
 
         nav ul {
             list-style: none;
             display: flex;
-            gap: 20px;
+            gap: 4px;
         }
 
-        nav ul li a {
+        nav a {
             display: block;
-            padding: 8px 12px;
-            color: #c7cbd1;
-            border-radius: 8px;
-            transition: .25s ease;
-            font-size: .92rem;
+            padding: 6px 10px;
+            font-size: .9rem;
+            color: var(--muted);
+            text-decoration: none;
+            border-radius: 6px;
+            transition: color .15s, background .15s;
         }
 
-        nav ul li a:hover {
-            color: #00ffcc;
-            background: rgba(0, 255, 204, .07);
-        }
-
-        /* ===== Hero ===== */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            flex-direction: column;
-            padding: 0 20px;
-        }
-
-        .hero h2 {
-            font-size: clamp(2.3rem, 5vw, 4rem);
-            line-height: 1.15;
-            letter-spacing: -1px;
-            background: linear-gradient(90deg, #00ffcc, #0099ff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: fadeIn 2s ease-in-out;
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            color: #ccc;
-            margin-top: 15px;
+        nav a:hover {
+            color: var(--text);
+            background: var(--border);
         }
 
         /* ===== Seções ===== */
         section {
-            max-width: 1100px;
-            margin: auto;
-            padding: 110px 24px;
-            scroll-margin-top: 70px;
+            padding: 72px 0;
+            scroll-margin-top: 60px;
         }
 
-        section h2 {
-            text-align: center;
-            font-size: clamp(2rem, 4vw, 2.6rem);
-            color: #00ffcc;
-            margin-bottom: 12px;
+        section + section {
+            border-top: 1px solid var(--border);
         }
 
-        section h2::after {
-            content: "";
-            display: block;
-            width: 42px;
-            height: 3px;
-            margin: 10px auto 0;
-            border-radius: 99px;
-            background: linear-gradient(90deg, #00ffcc, #0099ff);
+        .eyebrow {
+            font-size: .78rem;
+            font-weight: 600;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 8px;
         }
 
-        /* ===== Sobre mim ===== */
-        .sobre {
-            background: linear-gradient(135deg, rgba(20, 24, 29, .96), rgba(15, 18, 22, .96));
-            border: 1px solid rgba(255, 255, 255, .07);
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, .22);
+        h2 {
+            font-size: clamp(1.5rem, 3vw, 1.85rem);
+            letter-spacing: -.02em;
+            line-height: 1.25;
+            margin-bottom: 32px;
         }
 
-        .sobre-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 30px;
+        /* ===== Apresentação ===== */
+        .hero {
+            display: grid;
+            grid-template-columns: 168px 1fr;
+            gap: 40px;
+            align-items: center;
+            padding: 88px 0 72px;
         }
 
-        .sobre-container img {
-            width: 200px;
-            height: 200px;
+        .hero img {
+            width: 168px;
+            height: 168px;
             border-radius: 50%;
             object-fit: cover;
-            border: 2px solid #00ffcc;
-            padding: 4px;
-            box-shadow: 0 0 0 6px rgba(0, 255, 204, .06);
+            border: 1px solid var(--border);
         }
 
-        .sobre-container p {
-            max-width: 600px;
-            text-align: justify;
-            color: #ddd;
+        .hero h1 {
+            font-size: clamp(1.9rem, 4.5vw, 2.6rem);
+            line-height: 1.15;
+            letter-spacing: -.03em;
+            margin-bottom: 6px;
+        }
+
+        .hero .cargo {
             font-size: 1.1rem;
+            color: var(--accent);
+            font-weight: 550;
+            margin-bottom: 16px;
         }
 
-        /* ===== Cards ===== */
-        .cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            align-items: start;
-            margin-top: 40px;
+        .hero p.bio {
+            color: var(--muted);
+            max-width: 58ch;
+            margin-bottom: 24px;
         }
 
-        .card {
-            position: relative;
-            background: linear-gradient(145deg, rgba(27, 31, 37, .96), rgba(18, 21, 25, .96));
-            border: 1px solid rgba(255, 255, 255, .07);
-            padding: 24px;
-            border-radius: 16px;
-            transition: .25s ease;
-            cursor: default;
-            overflow: hidden;
+        .botoes {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
         }
 
-        .card::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: linear-gradient(90deg, #00ffcc, #0099ff);
-            opacity: .65;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(0, 255, 204, .22);
-            box-shadow: 0 16px 35px rgba(0, 0, 0, .24);
-        }
-
-        .card h3 {
-            color: #00ffcc;
-            margin-bottom: 10px;
-            font-size: 1.2rem;
-        }
-
-        .card p {
-            color: #ccc;
-            font-size: 0.95rem;
-            margin-bottom: 10px;
-        }
-
-        .card a {
-            display: inline-block;
-            margin-top: 8px;
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
             padding: 9px 16px;
-            color: #0b0d10;
-            background: linear-gradient(90deg, #00ffcc, #00d9ff);
-            font-weight: 700;
-            font-size: 0.9rem;
+            font-size: .92rem;
+            font-weight: 550;
+            text-decoration: none;
+            border: 1px solid var(--border);
             border-radius: 8px;
-            transition: 0.25s ease;
-            box-shadow: 0 4px 14px rgba(0, 255, 204, 0.15);
+            background: var(--surface);
+            transition: border-color .15s, color .15s;
         }
 
-        .card a:hover {
-            color: #0b0d10;
-            transform: translateY(-2px);
-            box-shadow: 0 7px 20px rgba(0, 255, 204, 0.28);
-            filter: brightness(1.08);
+        .btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .btn.primario {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: var(--bg);
+        }
+
+        .btn.primario:hover {
+            opacity: .9;
+            color: var(--bg);
+        }
+
+        /* ===== Linha do tempo das ABPs ===== */
+        .timeline {
+            list-style: none;
+        }
+
+        .projeto {
+            display: grid;
+            grid-template-columns: 170px 1fr;
+            gap: 32px;
+            padding: 28px 0;
+        }
+
+        .projeto + .projeto {
+            border-top: 1px solid var(--border);
+        }
+
+        .projeto-meta {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .abp {
+            font-size: .8rem;
+            font-weight: 650;
+            color: var(--accent);
+            letter-spacing: .04em;
         }
 
         .semestre {
             display: inline-block;
-            margin-bottom: 10px;
-            padding: 3px 10px;
-            font-size: .78rem;
-            font-weight: 600;
-            color: #00ffcc;
-            border: 1px solid rgba(0, 255, 204, .3);
+            width: fit-content;
+            font-size: .82rem;
+            color: var(--muted);
+            padding: 2px 10px;
+            border: 1px solid var(--border);
             border-radius: 999px;
-            background: rgba(0, 255, 204, .06);
+            background: var(--surface);
+            white-space: nowrap;
         }
 
-        .vermais {
-            margin-top: 10px;
-            color: #00ffcc;
-            cursor: pointer;
-            font-weight: bold;
-            display: inline-block;
+        .projeto h3 {
+            font-size: 1.15rem;
+            letter-spacing: -.01em;
+            margin-bottom: 6px;
         }
 
-        .extra {
-            max-height: 0;
-            opacity: 0;
-            overflow: hidden;
-            transition: 0.4s ease;
-            color: #ccc;
-            font-size: 0.9rem;
-            margin-top: 10px;
+        .projeto p {
+            color: var(--muted);
+            max-width: 68ch;
         }
 
-        .extra.open {
-            max-height: 600px;
-            opacity: 1;
-        }
-
-        /* ===== Outras informações ===== */
-        .info-list {
+        .tags {
             list-style: none;
-            padding-left: 0;
-            margin-top: 20px;
-            color: #ccc;
-            font-size: 1.05rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin: 14px 0 16px;
         }
 
-        .info-list li b {
-            color: #00ffcc;
+        .tags li {
+            font-size: .78rem;
+            color: var(--muted);
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 2px 8px;
+        }
+
+        .acoes {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 8px 20px;
+        }
+
+        .link {
+            font-size: .9rem;
+            font-weight: 550;
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        .link:hover {
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
+
+        /* Contribuição: abre só o projeto clicado, sem afetar os outros */
+        details {
+            width: 100%;
+        }
+
+        summary {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: .9rem;
+            font-weight: 550;
+            cursor: pointer;
+            list-style: none;
+            user-select: none;
+        }
+
+        summary::-webkit-details-marker {
+            display: none;
+        }
+
+        summary::before {
+            content: "+";
+            display: inline-grid;
+            place-items: center;
+            width: 18px;
+            height: 18px;
+            font-size: .9rem;
+            line-height: 1;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            transition: transform .2s;
+        }
+
+        details[open] summary::before {
+            content: "−";
+        }
+
+        .contribuicao {
+            margin-top: 14px;
+            padding: 16px 18px;
+            background: var(--accent-soft);
+            border-left: 2px solid var(--accent);
+            border-radius: 0 8px 8px 0;
+        }
+
+        .contribuicao p + p {
+            margin-top: 10px;
+        }
+
+        /* ===== Grade simples (pessoais, habilidades) ===== */
+        .grade {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 16px;
+        }
+
+        .bloco {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 22px;
+        }
+
+        .bloco h3 {
+            font-size: 1rem;
+            margin-bottom: 8px;
+        }
+
+        .bloco p {
+            color: var(--muted);
+            font-size: .95rem;
+        }
+
+        .bloco .tags {
+            margin-bottom: 0;
+        }
+
+        /* ===== Formação e informações ===== */
+        .info {
+            display: grid;
+            gap: 20px;
+        }
+
+        .info div {
+            display: grid;
+            grid-template-columns: 170px 1fr;
+            gap: 32px;
+        }
+
+        .info dt {
+            font-weight: 600;
+        }
+
+        .info dd {
+            color: var(--muted);
+            max-width: 68ch;
         }
 
         /* ===== Contato ===== */
-        .contact-links {
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-            margin-top: 18px;
-        }
-
-        .contact-links a {
-            display: inline-block;
-            padding: 9px 18px;
-            border: 1px solid rgba(0, 255, 204, .25);
-            border-radius: 999px;
-            background: rgba(0, 255, 204, .04);
-            transition: .25s ease;
-        }
-
-        .contact-links a:hover {
-            background: rgba(0, 255, 204, .1);
-            transform: translateY(-2px);
+        .contato p {
+            color: var(--muted);
+            margin-bottom: 20px;
         }
 
         footer {
-            text-align: center;
-            padding: 28px 20px;
-            background: #090b0e;
-            border-top: 1px solid rgba(255, 255, 255, .06);
-            color: #777;
-            font-size: .9rem;
+            border-top: 1px solid var(--border);
+            padding: 28px 0;
+            font-size: .85rem;
+            color: var(--subtle);
         }
 
-        footer a {
-            color: #00ffcc;
-            margin: 0 5px;
-        }
-
-
-        @media (max-width: 850px) {
-            header {
-                padding: 14px 20px;
-            }
-
-            header h1 {
-                font-size: 1.05rem;
-            }
-
+        /* ===== Responsivo ===== */
+        @media (max-width: 720px) {
             nav ul {
-                gap: 2px;
-            }
-
-            nav ul li a {
-                padding: 7px 8px;
-                font-size: .82rem;
-            }
-        }
-
-        @media (max-width: 650px) {
-            header {
-                position: absolute;
-                flex-direction: column;
-                gap: 8px;
-            }
-
-            nav ul {
-                flex-wrap: wrap;
-                justify-content: center;
+                display: none;
             }
 
             .hero {
-                padding-top: 100px;
+                grid-template-columns: 1fr;
+                gap: 24px;
+                padding: 56px 0 48px;
             }
 
-            .sobre-container p {
-                text-align: left;
-                font-size: 1rem;
+            .hero img {
+                width: 120px;
+                height: 120px;
+            }
+
+            .projeto,
+            .info div {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+
+            .projeto-meta {
+                flex-direction: row;
+                align-items: center;
+                gap: 10px;
             }
 
             section {
-                padding: 80px 18px;
+                padding: 56px 0;
             }
         }
 
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
             }
 
-            to {
-                opacity: 1;
-                transform: translateY(0);
+            * {
+                transition: none !important;
             }
         }
     </style>
@@ -377,201 +467,293 @@
 <body>
 
     <header>
-        <h1>Carlos Eduardo Gonçalves do Espírito Santo</h1>
-        <nav>
-            <ul>
-                <li><a href="#sobre">Sobre</a></li>
-                <li><a href="#acad">Acadêmicos</a></li>
-                <li><a href="#pessoais">Pessoais</a></li>
-                <li><a href="#info">Outras Informações</a></li>
-                <li><a href="#contato">Contato</a></li>
-            </ul>
-        </nav>
+        <div class="container nav">
+            <a class="brand" href="#inicio">Carlos Eduardo</a>
+            <nav aria-label="Seções">
+                <ul>
+                    <li><a href="#projetos">Projetos</a></li>
+                    <li><a href="#pessoais">Pessoais</a></li>
+                    <li><a href="#habilidades">Habilidades</a></li>
+                    <li><a href="#sobre">Sobre</a></li>
+                    <li><a href="#contato">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
-    <section class="hero">
-        <h2>Olá, sou Desenvolvedor de Software</h2>
-        <p>Criando soluções criativas e modernas com tecnologia.</p>
-    </section>
+    <main class="container">
 
-    <!-- SOBRE -->
-    <section id="sobre" class="sobre">
-        <h2>Sobre Mim</h2>
-        <div class="sobre-container">
+        <!-- APRESENTAÇÃO -->
+        <div class="hero" id="inicio">
             <img src="./minhafoto.jpeg" alt="Foto de Carlos Eduardo">
-            <p>
-                Sou um desenvolvedor de software de 18 anos em busca de oportunidades para aplicar meus conhecimentos,
-                criar soluções inovadoras e adquirir mais experiência. Já participei de projetos acadêmicos e pessoais,
-                sempre com foco em entregar qualidade e eficiência.
-            </p>
-        </div>
-    </section>
-
-    <!-- PROJETOS ACADÊMICOS -->
-    <section id="acad">
-        <h2>Projetos Acadêmicos</h2>
-        <div class="cards">
-
-            <div class="card">
-                <h3>Gerenciamento Acadêmico</h3>
-                <span class="semestre">1DSM – 1º Sem. 2025</span>
-                <p>Projeto desenvolvido para melhorar a comunicação da instituição com os alunos.</p>
-                <p><b>Tecnologias:</b> HTML • CSS • JavaScript • Node.js • PostgreSQL</p>
-                <a href="https://github.com/ErrorSquad-ABP/Gerenciamento_Pedagogico-Front" target="_blank">↗ Ver repositório</a>
-
-                <span class="vermais" onclick="toggleExtra(this)">Ver mais</span>
-                <div class="extra">
-                    <p><b>Minhas contribuições individuais:</b><br>
-                        Neste projeto minha principal função foi em relação ao back end, desde a criação de classes e
-                        seus métodos, como elas interagiam com nosso banco de dados, além de algumas participações
-                        menores no frontend como a responsividade da tabela
-                    </p>
+            <div>
+                <h1>Carlos Eduardo Gonçalves do Espírito Santo</h1>
+                <p class="cargo">Desenvolvedor de Software</p>
+                <p class="bio">
+                    Tenho 18 anos e curso Desenvolvimento de Software Multiplataforma na FATEC Jacareí. Busco
+                    oportunidades para aplicar meus conhecimentos, criar soluções úteis e ganhar experiência. Já
+                    participei de projetos acadêmicos e pessoais, principalmente no back-end, sempre com foco em
+                    qualidade e eficiência.
+                </p>
+                <div class="botoes">
+                    <a class="btn primario" href="#projetos">Ver projetos</a>
+                    <a class="btn" href="https://github.com/Carlos-Santo" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+                    <a class="btn" href="https://www.linkedin.com/in/carlos-santo-devFno" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
                 </div>
             </div>
+        </div>
 
-            <div class="card">
-                <h3>Gerenciamento de dados limnológicos INPE</h3>
-                <span class="semestre">2DSM – 2º Sem. 2025</span>
-                <p>Projeto em parceria com o INPE para que seus pesquisadores tenham acesso aos dados antigos que não
-                    estavam presentes na interface atual</p>
-                <p><b>Tecnologias:</b> React • TypeScript • Node.js • PostgreSQL</p>
-                <a href="https://github.com/ErrorSquad-ABP/ABP2-BDLimnologico" target="_blank">↗ Ver repositório</a>
+        <!-- PROJETOS ACADÊMICOS (ABPs) -->
+        <section id="projetos">
+            <p class="eyebrow">Aprendizagem Baseada em Projetos</p>
+            <h2>Projetos Acadêmicos</h2>
 
-                <span class="vermais" onclick="toggleExtra(this)">Ver mais</span>
-                <div class="extra">
-                    <p><b>Minhas contribuições individuais:</b><br>
-                        Neste projeto tive grandes participações como a criação de algumas páginas, lógicas de consultas
-                        pela interface e filtros, aplicação do mapa e seus polígonos
-                    </p>
+            <ol class="timeline">
+
+                <li class="projeto">
+                    <div class="projeto-meta">
+                        <span class="abp">ABP 1</span>
+                        <span class="semestre">1DSM – 1º Sem. 2025</span>
+                    </div>
+                    <div>
+                        <h3>Gerenciamento Acadêmico</h3>
+                        <p>Sistema desenvolvido para melhorar a comunicação da instituição com os alunos.</p>
+                        <ul class="tags">
+                            <li>HTML</li>
+                            <li>CSS</li>
+                            <li>JavaScript</li>
+                            <li>Node.js</li>
+                            <li>PostgreSQL</li>
+                        </ul>
+                        <div class="acoes">
+                            <a class="link" href="https://github.com/ErrorSquad-ABP/Gerenciamento_Pedagogico-Front" target="_blank" rel="noopener noreferrer">Ver repositório ↗</a>
+                            <details>
+                                <summary>Minha contribuição</summary>
+                                <div class="contribuicao">
+                                    <p>
+                                        Atuei principalmente no back-end, criando as classes e seus métodos e a forma
+                                        como elas interagem com o banco de dados. No front-end, tive participações
+                                        menores, como a responsividade da tabela.
+                                    </p>
+                                </div>
+                            </details>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="projeto">
+                    <div class="projeto-meta">
+                        <span class="abp">ABP 2</span>
+                        <span class="semestre">2DSM – 2º Sem. 2025</span>
+                    </div>
+                    <div>
+                        <h3>Gerenciamento de dados limnológicos – INPE</h3>
+                        <p>
+                            Projeto em parceria com o INPE para que seus pesquisadores tenham acesso a dados antigos
+                            que não estavam presentes na interface atual.
+                        </p>
+                        <ul class="tags">
+                            <li>React</li>
+                            <li>TypeScript</li>
+                            <li>Node.js</li>
+                            <li>PostgreSQL</li>
+                        </ul>
+                        <div class="acoes">
+                            <a class="link" href="https://github.com/ErrorSquad-ABP/ABP2-BDLimnologico" target="_blank" rel="noopener noreferrer">Ver repositório ↗</a>
+                            <details>
+                                <summary>Minha contribuição</summary>
+                                <div class="contribuicao">
+                                    <p>
+                                        Participei da criação de páginas da aplicação, da lógica de consultas e dos
+                                        filtros feitos pela interface, e da implementação do mapa com seus polígonos.
+                                    </p>
+                                </div>
+                            </details>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="projeto">
+                    <div class="projeto-meta">
+                        <span class="abp">ABP 3</span>
+                        <span class="semestre">3DSM – 1º Sem. 2026</span>
+                    </div>
+                    <div>
+                        <h3>Quantum CRM</h3>
+                        <p>
+                            Sistema de gestão de leads desenvolvido para a 1000 Vale, que centraliza o gerenciamento
+                            de clientes e oportunidades comerciais e torna o acompanhamento dos leads mais organizado
+                            e eficiente.
+                        </p>
+                        <ul class="tags">
+                            <li>React</li>
+                            <li>TypeScript</li>
+                            <li>Node.js</li>
+                            <li>PostgreSQL</li>
+                        </ul>
+                        <div class="acoes">
+                            <a class="link" href="https://github.com/ErrorSquad-ABP/ABP3-Sistema-Gestao-Leads" target="_blank" rel="noopener noreferrer">Ver repositório ↗</a>
+                            <details>
+                                <summary>Minha contribuição</summary>
+                                <div class="contribuicao">
+                                    <p>
+                                        Atuei principalmente na construção do back-end: modelagem das entidades,
+                                        criação das rotas da API e das regras de negócio de cadastro e acompanhamento
+                                        dos leads ao longo do funil de vendas, além da integração com o PostgreSQL.
+                                    </p>
+                                    <p>
+                                        Também desenvolvi o dashboard e seus gráficos, criando as consultas que agregam
+                                        os dados dos leads e os endpoints que alimentam os indicadores da interface,
+                                        para que a equipe comercial acompanhe o desempenho de forma visual.
+                                    </p>
+                                </div>
+                            </details>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="projeto">
+                    <div class="projeto-meta">
+                        <span class="abp">ABP 4</span>
+                        <span class="semestre">4DSM – 2º Sem. 2026</span>
+                    </div>
+                    <div>
+                        <h3>Sistema de Controle de Acesso</h3>
+                        <p>
+                            Sistema integrado de baixo custo para controle de acesso em edifícios, com terminal ESP32
+                            (QR Code rotativo e NFC), aplicativo mobile em Flutter e back-end em Node.js/TypeScript
+                            comunicando-se por REST e MQTT.
+                        </p>
+                        <ul class="tags">
+                            <li>Flutter</li>
+                            <li>Dart</li>
+                            <li>Node.js</li>
+                            <li>TypeScript</li>
+                            <li>PostgreSQL</li>
+                            <li>MQTT</li>
+                            <li>ESP32</li>
+                        </ul>
+                        <div class="acoes">
+                            <a class="link" href="https://github.com/ErrorSquad-ABP/ABP4-Sistema-Controle-Acesso" target="_blank" rel="noopener noreferrer">Ver repositório ↗</a>
+                            <details>
+                                <summary>Minha contribuição</summary>
+                                <div class="contribuicao">
+                                    <p>
+                                        Montei a base do aplicativo em Flutter: estrutura com Riverpod e go_router, tema
+                                        claro e escuro do design system, testes iniciais e o guia de como rodar o app.
+                                        Também defini o contrato OpenAPI v1 da API, com as rotas iniciais.
+                                    </p>
+                                    <p>
+                                        No back-end, trabalhei na confiabilidade da comunicação via MQTT: outbox para o
+                                        envio de comandos aos terminais, limite de conexões com o banco de dados e as
+                                        regras de retenção e de prazos da deduplicação de mensagens.
+                                    </p>
+                                </div>
+                            </details>
+                        </div>
+                    </div>
+                </li>
+
+            </ol>
+        </section>
+
+        <!-- PROJETOS PESSOAIS -->
+        <section id="pessoais">
+            <p class="eyebrow">Por conta própria</p>
+            <h2>Projetos Pessoais</h2>
+            <div class="grade">
+                <article class="bloco">
+                    <h3>CSV Graph Generator</h3>
+                    <p>Interface que lê arquivos CSV e transforma os dados escolhidos em gráficos.</p>
+                    <ul class="tags">
+                        <li>Python</li>
+                    </ul>
+                    <a class="link" href="https://github.com/Carlos-Santo/csv-graph-generator" target="_blank" rel="noopener noreferrer">Ver repositório ↗</a>
+                </article>
+            </div>
+        </section>
+
+        <!-- HABILIDADES -->
+        <section id="habilidades">
+            <p class="eyebrow">O que uso</p>
+            <h2>Habilidades</h2>
+            <div class="grade">
+                <div class="bloco">
+                    <h3>Linguagens e frameworks</h3>
+                    <ul class="tags">
+                        <li>HTML</li>
+                        <li>CSS</li>
+                        <li>JavaScript</li>
+                        <li>TypeScript</li>
+                        <li>Node.js</li>
+                        <li>React</li>
+                        <li>Flutter</li>
+                        <li>Python</li>
+                        <li>PHP</li>
+                    </ul>
+                </div>
+                <div class="bloco">
+                    <h3>Banco de dados</h3>
+                    <ul class="tags">
+                        <li>PostgreSQL</li>
+                        <li>SQL</li>
+                        <li>Modelagem de dados</li>
+                    </ul>
+                </div>
+                <div class="bloco">
+                    <h3>Ferramentas e práticas</h3>
+                    <ul class="tags">
+                        <li>Git</li>
+                        <li>GitHub</li>
+                        <li>Metodologias ágeis</li>
+                        <li>MQTT</li>
+                    </ul>
                 </div>
             </div>
+        </section>
 
-            <div class="card">
-                <h3>Quantum CRM</h3>
-                <span class="semestre">3DSM – 1º Sem. 2026</span>
-                <p>Sistema de gestão de leads desenvolvido para a 1000 Vale, com o objetivo de centralizar e facilitar o
-                    gerenciamento de clientes e oportunidades comerciais, tornando o acompanhamento dos leads mais
-                    organizado e eficiente.</p>
-                <p><b>Tecnologias:</b> React • TypeScript • Node.js • PostgreSQL</p>
-                <a href="https://github.com/ErrorSquad-ABP/ABP3-Sistema-Gestao-Leads" target="_blank">↗ Ver repositório</a>
-
-                <span class="vermais" onclick="toggleExtra(this)">Ver mais</span>
-                <div class="extra">
-                    <p><b>Minhas contribuições individuais:</b><br>
-                        Neste projeto atuei principalmente na construção do back-end, participando da modelagem
-                        das entidades, da criação das rotas da API e das regras de negócio responsáveis pelo cadastro
-                        e acompanhamento dos leads ao longo do funil de vendas, além da integração com o banco de
-                        dados PostgreSQL.<br><br>
-                        Também fui responsável pelo desenvolvimento de funcionalidades como o dashboard e seus
-                        gráficos, criando as consultas que agregam os dados dos leads e os endpoints que alimentam
-                        os indicadores exibidos na interface, para que a equipe comercial acompanhe o desempenho e
-                        as oportunidades de forma visual.
-                    </p>
+        <!-- FORMAÇÃO E OUTRAS INFORMAÇÕES -->
+        <section id="sobre">
+            <p class="eyebrow">Sobre mim</p>
+            <h2>Formação e interesses</h2>
+            <dl class="info">
+                <div>
+                    <dt>Formação</dt>
+                    <dd>
+                        Cursando Desenvolvimento de Software Multiplataforma na FATEC Jacareí. Cursei o Ensino Médio
+                        integrado ao Técnico na ETEC Ilza Nascimento Pintus.
+                    </dd>
                 </div>
+                <div>
+                    <dt>Interesses</dt>
+                    <dd>
+                        Desenvolvimento de software, interfaces modernas, soluções web, análise de dados e projetos
+                        que envolvam inovação tecnológica e melhoria contínua.
+                    </dd>
+                </div>
+                <div>
+                    <dt>Hobbies</dt>
+                    <dd>Atividades físicas e programar jogos de pequeno porte.</dd>
+                </div>
+            </dl>
+        </section>
+
+        <!-- CONTATO -->
+        <section id="contato" class="contato">
+            <p class="eyebrow">Contato</p>
+            <h2>Vamos conversar</h2>
+            <p>Acompanhe meus perfis ou entre em contato por eles.</p>
+            <div class="botoes">
+                <a class="btn" href="https://github.com/Carlos-Santo" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+                <a class="btn" href="https://www.linkedin.com/in/carlos-santo-devFno" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
             </div>
+        </section>
 
-        </div>
-    </section>
-
-    <!-- PROJETOS PESSOAIS -->
-    <section id="pessoais">
-        <h2>Projetos Pessoais</h2>
-        <div class="cards">
-
-            <div class="card">
-                <h3>CSV graph generator</h3>
-                <p>Projeto que cria uma interface que pega arquivos csv's e te permite transformar em gráficos com os
-                    dados escolhidos</p>
-                <p><b>Tecnologias:</b> Python</p>
-
-                <a href="https://github.com/Carlos-Santo/csv-graph-generator" target="_blank">Ver
-                    repositório</a>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- HABILIDADES -->
-    <section id="habilidades">
-        <h2>Habilidades</h2>
-        <div class="cards">
-
-            <div class="card">
-                <h3>Tecnologias e Linguagens</h3>
-                <p><b>HTML • CSS • JavaScript • TypeScript</b></p>
-                <p><b>Node.js • React • Python • PHP</b></p>
-            </div>
-
-            <div class="card">
-                <h3>Banco de Dados</h3>
-                <p>PostgreSQL • SQL • Modelagem de dados</p>
-            </div>
-
-            <div class="card">
-                <h3>Ferramentas e Práticas</h3>
-                <p>Git • GitHub • Metodologias ágeis • Versionamento</p>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- OUTRAS INFORMAÇÕES -->
-    <section id="info">
-        <h2>Outras Informações</h2>
-
-        <ul class="info-list">
-            <li><b>Formação acadêmica:</b> Fui aluno da ETEC Ilza Nascimento Pintus, onde cursei o Ensino Médio
-                integrado ao Técnico. Atualmente, estou cursando ensino superior na FATEC
-                Jacareí.</li>
-
-            <li><b>Hobbies:</b> Gosto de fazer atividades físicas, mas tenho como um dos meus principais hobbies programar
-                alguns jogos de pequeno porte</li>
-            <li><b>Interesses profissionais:</b> Tenho interesse em atuar nas áreas de desenvolvimento de software,
-                criação de interfaces modernas, soluções web, análise de dados e projetos que envolvam inovação
-                tecnológica e melhoria contínua.</li>
-        </ul>
-    </section>
-
-    <!-- CONTATO -->
-    <section id="contato">
-        <h2>Contato</h2>
-        <p style="text-align:center;margin-bottom:15px;">Acompanhe meus perfis:</p>
-
-        <div class="contact-links">
-            <a href="https://github.com/Carlos-Santo" target="_blank">GitHub</a>
-            <a href="https://www.linkedin.com/in/carlos-santo-devFno" target="_blank">LinkedIn</a>
-        </div>
-    </section>
+    </main>
 
     <footer>
-        <p>&copy; 2026 - Carlos Eduardo Gonçalves do Espírito Santo</p>
+        <div class="container">© 2026 · Carlos Eduardo Gonçalves do Espírito Santo</div>
     </footer>
-
-    <script>
-        function toggleExtra(el) {
-            const extra = el.nextElementSibling;
-            extra.classList.toggle("open");
-            el.textContent = extra.classList.contains("open") ? "Ver menos" : "Ver mais";
-        }
-
-        // Deixa os cards fechados de cada grupo com a mesma altura.
-        // Como o grid usa align-items: start, só o card expandido cresce.
-        function igualarCards() {
-            document.querySelectorAll(".cards").forEach(grupo => {
-                const cards = [...grupo.children];
-                cards.forEach(card => card.style.minHeight = "");
-                const alturaFechado = card => {
-                    const extra = card.querySelector(".extra");
-                    return card.offsetHeight - (extra ? extra.offsetHeight : 0);
-                };
-                const maior = Math.max(...cards.map(alturaFechado));
-                cards.forEach(card => card.style.minHeight = maior + "px");
-            });
-        }
-
-        window.addEventListener("load", igualarCards);
-        window.addEventListener("resize", igualarCards);
-    </script>
 
 </body>
 
